@@ -32,6 +32,10 @@ public class JsonService {
         mergeMenu(db, m);
         writeDb(db);
     }
+    public Menu[] getAllMenu() throws IOException {
+        Db db = readDb();
+        return db.getMenu();
+    }
 
     private void mergeRequests(Db db, Request r) {
         Request[] requestsArr = db.getRequests();

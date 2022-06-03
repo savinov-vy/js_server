@@ -6,6 +6,7 @@ import com.example.js_server.service.JsonService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,10 +31,15 @@ public class ServerController {
         jsonService.saveRequest(form);
         return new ResponseEntity<>(form, HttpStatus.OK);
     }
+
     @PostMapping(value = "/menu/json")
     public ResponseEntity<Menu> postMenu(@RequestBody Menu menu) throws IOException {
         jsonService.saveMenu(menu);
         return new ResponseEntity<>(menu, HttpStatus.OK);
     }
 
+    @GetMapping(value = "menu")
+    public Menu[] getMenu() throws IOException {
+        return jsonService.getAllMenu();
+    }
 }
